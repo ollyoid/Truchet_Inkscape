@@ -4,6 +4,11 @@
     <id>org.inkscape.filter.trutchet</id>
     <param name="rows" type="int" max="100" gui-text="Rows:">8</param>
     <param name="columns" type="int" max="100" gui-text="Columns:">8</param>
+    <param name="shape" type="optiongroup" appearance="radio"
+        gui-text="Tiling Shape">
+        <option value="rect">Rectilinear</option>
+        <option value="hex">Hexagonal (experimental)</option>
+        </param>
     <effect>
         <object-type>path</object-type>
         <effects-menu>
