@@ -1,5 +1,5 @@
 # Truchet Inkscape
-> An Incsape extension for easily making Truchet tile patterns
+> An extension for Inkscape to generate Truchet tile patterns 
 
 ![img](img/usage.gif)
 
