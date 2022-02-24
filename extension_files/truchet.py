@@ -10,10 +10,25 @@ class Truchet(inkex.EffectExtension):
 
     
     def effect(self):
-        # Check that something is infact selected
-        if (len(self.options.ids) == 0):
-            inkex.errormsg("Nothing selected")
+
+        num_tile_types = len(self.svg.selected)
+
+        # Exit if there aren't any tiles selected
+        if (num_tile_types == 0):
+            inkex.errormsg("Nothing Selected")
             exit()
+
+        tile_types = []
+
+        for selected in self.svg.selected:
+            tile = selected.copy()
+            bb = tile.bounding_box()
+            transform  = inkex.Transform(translate=(-bb.left, -bb.top))
+            tile.transform = transform*tile.transform
+            tile_types.append(tile)
+
+
+        # TODO: Make sure that tiles are the same size
 
 
         # Create new empty group for tiles to go in
@@ -22,12 +37,11 @@ class Truchet(inkex.EffectExtension):
         # Generate tiling
         for i in range(self.options.columns):
             for j in range(self.options.rows):
-                tile = self.svg.selected[0].copy()
+                tile = tile_types[random.randint(0, num_tile_types -1)].copy()
                 bb = tile.bounding_box()
                 # Transformation done in specific order where rotation is done relative to original postion
-                t  = inkex.Transform()
-                t.add_translate(-bb.left + (i*bb.width), -bb.top +(j*bb.height))
-                t.add_rotate(90*random.randint(0,3  ), bb.center_x, bb.center_y)
+                t  = inkex.Transform(translate=(i*bb.width, j*bb.height))
+                t.add_rotate(90*random.randint(0, 3), bb.center_x, bb.center_y)
                 tile.transform =  t * tile.transform
                 group.add(tile)
 
