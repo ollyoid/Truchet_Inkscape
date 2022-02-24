@@ -9,7 +9,7 @@
 3. Restart Inkscape
 
 ## Usage
-1. Draw the tiles you wish to use. They should all have the same Bounding box shape.
+1. Draw the tiles you wish to use - they should all have the same Bounding box size/shape
 2. Make each of the tiles it's own group element
 3. Select the tile groups you want to use
 4. Start the extension `Extensions>Truchet Tiling>Truchet...`
