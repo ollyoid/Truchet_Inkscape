@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Trutchet</name>
+    <id>org.inkscape.filter.trutchet</id>
+    <param name="rows" type="int" max="100" gui-text="Rows:">8</param>
+    <param name="columns" type="int" max="100" gui-text="Columns:">8</param>
+    <effect>
+        <object-type>path</object-type>
+        <effects-menu>
+            <submenu name="Truchet Tiling"/>
+        </effects-menu> 
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">truchet.py</command>
+    </script>
+</inkscape-extension>
