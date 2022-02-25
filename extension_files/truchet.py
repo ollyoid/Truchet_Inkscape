@@ -4,7 +4,7 @@ import math
 
 
 class Truchet(inkex.EffectExtension):
-    
+
     def add_arguments(self, pars):
         pars.add_argument("--columns", type=int, default=8, help="Columns")
         pars.add_argument("--rows", type=int, default=8, help="Rows")
@@ -14,6 +14,9 @@ class Truchet(inkex.EffectExtension):
     def effect(self):
 
         num_tile_types = len(self.svg.selected)
+
+        # for i in self.svg.iterfind(".//*[@label='truchet_hex']"):
+        #     inkex.utils.debug(i.label)
 
         # Exit if there aren't any tiles selected
         if (num_tile_types == 0):
@@ -67,6 +70,20 @@ class Truchet(inkex.EffectExtension):
                     t.add_rotate(60*random.randint(0, 5), bb.center_x, bb.center_y)
                     tile.transform =  t * tile.transform
                     group.add(tile)
+        elif self.options.shape == "tri":
+            bb1 = tile_types[0].bounding_box()
+            w_offset = bb1.height/2*math.sqrt(3)/3
+            for i in range(self.options.columns):
+                for b in range(2):
+                    for j in range(self.options.rows):
+                        tile = tile_types[random.randint(0, num_tile_types -1)].copy()
+                        bb = tile.bounding_box()
+                        # Transformation done in specific order where rotation is done relative to original postion
+                        t  = inkex.Transform(translate=(i*bb.width, j*bb.height + bb.height/2*b))
+                        t.add_rotate(180*((b+i)%2), bb.center_x, bb.center_y)
+                        t.add_rotate(120*random.randint(0, 2), bb.right-w_offset, bb.center_y)
+                        tile.transform =  t * tile.transform
+                        group.add(tile)
 
 
 if __name__ == '__main__':

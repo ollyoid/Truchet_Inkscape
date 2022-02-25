@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
-    <name>Trutchet</name>
-    <id>org.inkscape.filter.trutchet</id>
-    <param name="rows" type="int" max="100" gui-text="Rows:">8</param>
-    <param name="columns" type="int" max="100" gui-text="Columns:">8</param>
+    <name>Prepare Truchet Tiles</name>
+    <id>org.inkscape.filter.trutchet_prepare</id>
     <param name="shape" type="optiongroup" appearance="radio"
         gui-text="Tiling Shape">
-        <option value="rect">Rectilinear</option>
+        <option value="rect">Square</option>
         <option value="tri">Triangular</option>
         <option value="hex">Hexagonal</option>
         </param>
+        <param name="length" type="float" max="100" gui-text="Edge Length:">10</param>
+        <param name="grids" type="boolean" gui-text="Set up page grids">false</param>
     <effect>
         <object-type>path</object-type>
         <effects-menu>
@@ -17,6 +17,6 @@
         </effects-menu> 
     </effect>
     <script>
-        <command location="inx" interpreter="python">truchet.py</command>
+        <command location="inx" interpreter="python">truchet_prepare.py</command>
     </script>
 </inkscape-extension>
