@@ -51,7 +51,7 @@ class Truchet(inkex.EffectExtension):
         group = self.svg.get_current_layer().add(inkex.Group(id=f"truchet"))
 
         # Generate tiling
-        if self.options.shape == "rect":
+        if self.options.shape == "square":
             for i in range(self.options.columns):
                 for j in range(self.options.rows):
                     tile = tile_types[random.randint(0, num_tile_types -1)].copy()

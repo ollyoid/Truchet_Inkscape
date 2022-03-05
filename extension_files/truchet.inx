@@ -6,7 +6,7 @@
     <param name="columns" type="int" max="100" gui-text="Columns:">8</param>
     <param name="shape" type="optiongroup" appearance="radio"
         gui-text="Tiling Shape">
-        <option value="rect">Rectilinear</option>
+        <option value="square">square</option>
         <option value="tri">Triangular</option>
         <option value="hex">Hexagonal</option>
         </param>
