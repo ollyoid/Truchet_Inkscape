@@ -15,9 +15,6 @@ class Truchet(inkex.EffectExtension):
 
         num_tile_types = len(self.svg.selected)
 
-        # for i in self.svg.iterfind(".//*[@label='truchet_hex']"):
-        #     inkex.utils.debug(i.label)
-
         # Exit if there aren't any tiles selected
         if (num_tile_types == 0):
             inkex.errormsg("Nothing Selected")
@@ -30,6 +27,12 @@ class Truchet(inkex.EffectExtension):
             bb = tile.bounding_box()
             transform  = inkex.Transform(translate=(-bb.left, -bb.top))
             tile.transform = transform*tile.transform
+            for x in tile.findall(".//*[@label='truchet_hex']"):
+                x.style="fill-opacity:0"
+            for x in tile.findall(".//*[@label='truchet_tri']"):
+                x.style="fill-opacity:0"
+            for x in tile.findall(".//*[@label='truchet_square']"):
+                x.style="fill-opacity:0"
             tile_types.append(tile)
 
 
